@@ -1,52 +1,83 @@
+// Declarando funcion
 
-const name = "Toto";
-const Apellido = "hourcade";
-console.log(`el nombre del profe es: ${name} ${Apellido}`)
-
-// let Acumular = ``;
-// let i = 0;
-// for (i; i<10; i ++) {
-//     if(i == 5){
-//         continue;
-//     }
-//     if(i === 7){
-//         break;
-//     }
-//     Acumular = Acumular + `<div class="card">
-//     <img src="img_avatar.png" alt="Avatar" style="width:100%">
-//     <div class="container">
-//       <h4><b>${name}</b></h4> 
-//       <p>${Apellido}</p> 
-//     </div>
-//     </div>`;
-// }
-// document.write(Acumular);
-
-
-let entrada = prompt("Ingresar un nombre").toUpperCase();
-//Repetimos hasta que se ingresa "ESC"
-while (entrada != "ESC") {
-    switch (entrada) {
-        case "ANA":
-            alert("HOLA ANA");
-            break;
-        case "JUAN":
-            alert("HOLA JUAN");
-            break;
-        default:
-            alert("¿QUIÉN SOS?")
-            break;
-    }
-    entrada = prompt("Ingresar un nombre");
+//ECMA5
+function crearUsuario(nombre) {
+    console.log(`Tu nombre es: ${nombre}`);
 }
 
-
-
-
-for (let i = 0; i < 20; i++) {
-    if (i % 2 === 0) {
-        console.log("es par")
-    }else{
-        console.log('es impar');
-    }
+const crearUsuario = function (nombre) {
+    console.log(`Tu nombre es: ${nombre}`);
 }
+
+//ECMA script 6 
+const crearUsuario = (nombre) => {
+    return nombre
+
+}
+const name = crearUsuario("toto");
+
+const saludar = () => {
+    //LOGICA
+
+    return true;
+}
+
+// Llamando a la funcion
+crearUsuario('Daniel')
+crearUsuario('Jose')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**********************************************/
+
+function sumarNumeros(z, x, c) {
+    // console.log(x + y + z);
+}
+
+sumarNumeros(1, 20, 30);
+
+/**************************************************************/
+
+// Declaracion de la funcion
+function validarStock(cantidadDeStock, cantidadOrdenada) {
+    let sePuedeVer = true;
+    if (cantidadOrdenada > cantidadDeStock) {
+        alert("Disculpame, no tengo stock para ofrecerte");
+        sePuedeVer = false;
+    } else {
+        alert("Compraste el solodeportes, felicitaciones!!!");
+        sePuedeVer = true;
+    }
+
+    return (sePuedeVer == true); // false
+}
+
+// Datos para la funcion
+const ordenesDelUsuario = 700;
+const stock = 500;
+
+// La llamada a la funcion
+const resultadoDeLaValidacion = validarStock(stock, ordenesDelUsuario); // false
+console.log(resultadoDeLaValidacion);
