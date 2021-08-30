@@ -3,26 +3,50 @@ const producto_dos = new Producto('Zapas Adidas', 100, 10, "https://www.purina-l
 const producto_tres = new Producto('Zapas de Solodeportes.com.ar', 700, 10, "https://www.purina-latam.com/sites/g/files/auxxlc391/files/styles/social_share_large/public/purina-reconocer-a-un-perro-feliz.jpg?itok=8xw_Cyof");
 const producto_cuatro = new Producto('Zapas Jagguar', 1200, 10, "https://www.purina-latam.com/sites/g/files/auxxlc391/files/styles/social_share_large/public/purina-reconocer-a-un-perro-feliz.jpg?itok=8xw_Cyof");
 const producto_cinco = new Producto('Zapas Jagguar', 1200, 10, "/img/perro.jpg");
-
 const baseDeDatos = [producto_uno, producto_dos, producto_tres, producto_cuatro, producto_cinco];
-
 const baseDeDatosMenosDe200 = baseDeDatos.filter(producto => producto.price < 1300);
-console.log(baseDeDatosMenosDe200);
 
 const carrito = [];
 
+/*** Creando las cards en JS */
 let acumulador = ``;
 baseDeDatos.forEach((producto) => {
-    acumulador += `<div class="card" style="background-color:violet">
-    <img src="${producto.img}" width="70" height="70"/>
-    <h3>${producto.title}</h3>
-    <p>$${producto.price}</p>
-    <button onclick="agregarAlCarrito('${producto.title}')">Agregar al carrito</button>
-    </div>`
+    acumulador += `<div class="col mb-5" id="${producto.title}">
+    <div class="card h-100">
+        <!-- Product image-->
+        <img class="card-img-top" src="${producto.img}" alt="..." />
+        <!-- Product details-->
+        <div class="card-body p-4">
+            <div class="text-center">
+                <!-- Product name-->
+                <h5 class="fw-bolder">${producto.title}</h5>
+                <!-- Product price-->
+                $${producto.price}
+            </div>
+        </div>
+        <!-- Product actions-->
+        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#" 
+            onclick="agregarAlCarrito('${producto.title}')">Agregar al carrito</a>
+            <button onclick="borrarDelCarrito('${producto.title}')">Eliminar esta card</button>
+            </div>
+        </div>
+    </div>
+</div>`
 });
 
-document.write(acumulador);
+//** Seleccionando donde poner nuestras cards */
+document.getElementById("productos").innerHTML = acumulador;
 
+function borrarDelCarrito(title){
+    //TODO: Buscar en el array de carrito y sacarlo
+    const productoEncontrado = baseDeDatos.find(producto => producto.title === title);
+    
+    const card = document.getElementById(title);
+    card.parentNode.removeChild(card);
+}
+
+// const todosLosH1 = document.getElementsByTagName('h1');
 function agregarAlCarrito(title){
     // TODO: En vez de un titulo, agregar el producto que se agrego.
     // TODO: Verificar stock del producto
@@ -32,25 +56,20 @@ function agregarAlCarrito(title){
     }else{
         alert("algo falló");
     }
+
+    document.getElementById("contador-carrito").innerHTML = carrito.length;
+    console.log(carrito);
     // TODO: calcular el total del carrito
-    console.log(carrito)
 }
 
-// const miArray    = ["ford", 45];
-// const otroArray  = ["hola", 22, "mundo"];
-// const nuevoArray = miArray.concat(otroArray);
-// console.log([...miArray, ...otroArray]);
-// console.log(nuevoArray);
 
-// const nombres    = ['Rita', 'Pedro', 'Miguel', 'Ana', 'Vanesa'];
-// const masculinos = nombres.slice(1, 3);
-// console.log(masculinos)
+function validarFormulario(){
+    const edad = document.getElementById("edad").value;
+    const nombre = document.getElementById("nombre").value;
 
+    if(edad > 18){
+        console.log(nombre + " sos mayor de edad, felicitaciones!!");
+    }
 
-// console.log(1 === 1 === 1);
-
-// const numeros = [1, 2, 3, 4, 5];
-// const porDos = numeros.map(element => {
-//     return element * 2
-// });
-// console.log(porDos);
+    console.log(edad);
+}
