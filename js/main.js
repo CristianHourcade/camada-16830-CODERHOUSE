@@ -1,3 +1,10 @@
+let carrito = [];
+if(localStorage.carrito != null){
+    carrito = JSON.parse(localStorage.carrito);
+    document.getElementById("contador-carrito").innerHTML = carrito.length;
+}
+
+
 const producto_uno = new Producto('Zapas niky', 9000, 10, 'https://www.purina-latam.com/sites/g/files/auxxlc391/files/styles/social_share_large/public/purina-reconocer-a-un-perro-feliz.jpg?itok=8xw_Cyof');
 const producto_dos = new Producto('Zapas Adidas', 100, 10, "https://www.purina-latam.com/sites/g/files/auxxlc391/files/styles/social_share_large/public/purina-reconocer-a-un-perro-feliz.jpg?itok=8xw_Cyof");
 const producto_tres = new Producto('Zapas de Solodeportes.com.ar', 700, 10, "https://www.purina-latam.com/sites/g/files/auxxlc391/files/styles/social_share_large/public/purina-reconocer-a-un-perro-feliz.jpg?itok=8xw_Cyof");
@@ -6,7 +13,6 @@ const producto_cinco = new Producto('Zapas Jagguar', 1200, 10, "/img/perro.jpg")
 const baseDeDatos = [producto_uno, producto_dos, producto_tres, producto_cuatro, producto_cinco];
 const baseDeDatosMenosDe200 = baseDeDatos.filter(producto => producto.price < 1300);
 
-const carrito = [];
 
 /*** Creando las cards en JS */
 let acumulador = ``;
@@ -38,38 +44,61 @@ baseDeDatos.forEach((producto) => {
 //** Seleccionando donde poner nuestras cards */
 document.getElementById("productos").innerHTML = acumulador;
 
-function borrarDelCarrito(title){
+function borrarDelCarrito(title) {
     //TODO: Buscar en el array de carrito y sacarlo
     const productoEncontrado = baseDeDatos.find(producto => producto.title === title);
-    
+
     const card = document.getElementById(title);
     card.parentNode.removeChild(card);
 }
 
 // const todosLosH1 = document.getElementsByTagName('h1');
-function agregarAlCarrito(title){
+function agregarAlCarrito(title) {
     // TODO: En vez de un titulo, agregar el producto que se agrego.
     // TODO: Verificar stock del producto
     const productoEncontrado = baseDeDatos.find(producto => producto.title === title);
-    if(productoEncontrado != undefined){
+    if (productoEncontrado != undefined) {
         carrito.push(productoEncontrado);
-    }else{
+    } else {
         alert("algo falló");
     }
 
+    localStorage.carrito = JSON.stringify(carrito);
     document.getElementById("contador-carrito").innerHTML = carrito.length;
-    console.log(carrito);
+    
     // TODO: calcular el total del carrito
 }
 
 
-function validarFormulario(){
+
+function validarFormulario() {
     const edad = document.getElementById("edad").value;
     const nombre = document.getElementById("nombre").value;
 
-    if(edad > 18){
+    if (edad > 18) {
         console.log(nombre + " sos mayor de edad, felicitaciones!!");
     }
 
     console.log(edad);
 }
+
+
+// document.getElementById('nombre').addEventListener('input',validarNombre)
+
+// function validarNombre(event){
+//     let value = event.target.value;
+
+//     if(value.length > 8){
+//         event.target.classList.add('totososcrack')
+//     }else{
+//         console.log("buen nombre rey")
+//     }
+// }
+
+
+/** Bucles **/
+// for // Si se usa
+// while //NO 
+// do while //NO
+
+// forEach

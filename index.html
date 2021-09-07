@@ -72,11 +72,18 @@
     </section>
 
     <section>
-        <input id="nombre" type="text" placeholder="">
-        <input id="edad" type="number">
-        <button onclick="validarFormulario()">Validar</button>
+        <form onsubmit="event.preventDefault();">
+            <input id="nombre" type="text" placeholder="Nombre">
+            <input id="edad" type="number" placeholder="edad">
+            <input id="mail" type="email" placeholder="mail">
+            <input id="telefono" type="phone" placeholder="telefono">
+            <input id="fecha" type="date" placeholder="fecha">
+            <button onclick="validarFormulario()">Validar</button>
+        </form>
     </section>
-    <!-- Footer-->
+
+
+</script>
     <footer class="py-5 bg-dark">
         <div class="container">
             <p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p>
