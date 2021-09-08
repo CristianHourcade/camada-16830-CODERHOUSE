@@ -10,8 +10,10 @@
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Bootstrap icons-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="/css/bootstrap-icons.css" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
     <link href="css/styles.css" rel="stylesheet" />
     <script src="js/class/producto.js"></script>
     <script src="js/class/ecommerce.js"></script>
@@ -28,11 +30,18 @@
                 aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="filtrarProductos()">Todos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="filtrarProductos('zapatilla')">Zapatillas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#!"  onclick="filtrarProductos('remera')">Remeras</a>
+                    </li>
+                  
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
+                        
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="#!">All Products</a></li>
                             <li>

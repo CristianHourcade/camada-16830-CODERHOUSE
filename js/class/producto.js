@@ -1,11 +1,11 @@
 class Producto {
 
-    constructor(title, price, stock, img) {
+    constructor(title, price, stock, img, category) {
         this.title = title;
         this.price = price;
         this.img = img;
         this.stock = stock;
-        this.category = '';
+        this.category = category;
     }
     
     validarStock(cantidad){
