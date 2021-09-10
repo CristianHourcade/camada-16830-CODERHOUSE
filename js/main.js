@@ -99,19 +99,22 @@
 
 const Mercadopago = new VirtualWallet()
 
-
-const UsuarioUno = new User('Toto')
-Mercadopago.signUpUser(UsuarioUno);
-
-const UsuarioDos = new User('José')
-Mercadopago.signUpUser(UsuarioDos)
-
-
-const transaction = new Transaction(UsuarioUno, UsuarioDos, 3000, 3000%21);
-const transaction2 = new Transaction(UsuarioUno, UsuarioDos, 17000, 3000%21);
-Mercadopago.pushNewTransaction(transaction);
-Mercadopago.pushNewTransaction(transaction2);
-
-
 console.log(`La wallet de toto tiene un balance de: ${Mercadopago.getBalanceByUsername("Toto")}`)
 console.log(`La wallet de toto tiene estas transacciones: ${JSON.stringify(Mercadopago.getTransactionsByUsername("Toto"))}`)
+
+function registrarUsuario() {
+    const nuevoUsuario = new User($("#nombre-usuario").val())
+    Mercadopago.signUpUser(nuevoUsuario)
+    localStorage.setItem('usuario', nuevoUsuario.username);
+    $("#usuario").html(nuevoUsuario.username);
+    console.log(Mercadopago)
+}
+
+function generarTransaccion() {
+    const cantidad = $("#cantidad").val();
+    const cuentaDestino = $("#destino").val();
+    const cuentaVendedor = $("#usuario").html();
+    const transaction = new Transaction(cuentaVendedor, cuentaDestino, cantidad, 12312312);
+    Mercadopago.pushNewTransaction(transaction);
+    console.log(Mercadopago)
+}

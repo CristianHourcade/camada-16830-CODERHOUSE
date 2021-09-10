@@ -24,83 +24,46 @@
 </head>
 
 <body>
-    <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="#!">Start Bootstrap</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="filtrarProductos()">Todos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="filtrarProductos('zapatilla')">Zapatillas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#!"  onclick="filtrarProductos('remera')">Remeras</a>
-                    </li>
-                  
-                    <li class="nav-item dropdown">
-                        
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#!">All Products</a></li>
-                            <li>
-                                <hr class="dropdown-divider" />
-                            </li>
-                            <li><a class="dropdown-item" href="#!">Popular Items</a></li>
-                            <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <form class="d-flex">
-                    <button class="btn btn-outline-dark" type="submit">
-                        <i class="bi-cart-fill me-1"></i>
-                        Cart
-                        <span id="contador-carrito" class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                    </button>
-                </form>
-            </div>
-        </div>
-    </nav>
-    <!-- Header-->
-    <header class="bg-dark py-5">
-        <div class="container px-4 px-lg-5 my-5">
-            <div class="text-center text-white">
-                <h1 class="display-4 fw-bolder">Shop in style</h1>
-                <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
-            </div>
-        </div>
-    </header>
-    <!-- Section-->
-    <section class="py-5">
-        <div class="container px-4 px-lg-5 mt-5">
-            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center" id="productos">
+    
+    <h1>Mi balance: <small id="balance">$0</small></h1>
+    <h2>¡Bienvenido<small id="usuario">XXXX</small></h2>
+    <div id="historial-transacciones">
 
-            </div>
-        </div>
-    </section>
+    </div>
 
-    <section>
-        <form onsubmit="event.preventDefault();">
-            <input id="nombre" type="text" placeholder="Nombre">
-            <input id="edad" type="number" placeholder="edad">
-            <input id="mail" type="email" placeholder="mail">
-            <input id="telefono" type="phone" placeholder="telefono">
-            <input id="fecha" type="date" placeholder="fecha">
-            <button onclick="validarFormulario()">Validar</button>
-        </form>
-    </section>
+    <div>
+        <input type="number" id="cantidad" placeholder="Cantidad $">
+        <input type="text" id="destino" placeholder="Destinatario">
+        <button onclick="generarTransaccion()">Enviar dinero</button>
+    </div>
 
 
-</script>
-    <footer class="py-5 bg-dark">
-        <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p>
+
+
+
+    <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Auth system
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Crea nuevo usuario</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-    </footer>
+        <div class="modal-body">
+            <input id="nombre-usuario" type="text" placeholder="nombre" />
+            
+        </div>
+        <div class="modal-footer">
+            <button onclick="registrarUsuario()">Registrarnos</button>
+        </div>
+      </div>
+    </div>
+  </div>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
