@@ -97,7 +97,7 @@
 
 /******************************************************************************************************/
 
-const Mercadopago = new VirtualWallet()
+const Mercadopago = new VirtualWallet() ;
 
 console.log(`La wallet de toto tiene un balance de: ${Mercadopago.getBalanceByUsername("Toto")}`)
 console.log(`La wallet de toto tiene estas transacciones: ${JSON.stringify(Mercadopago.getTransactionsByUsername("Toto"))}`)
