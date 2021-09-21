@@ -97,24 +97,105 @@
 
 /******************************************************************************************************/
 
-const Mercadopago = new VirtualWallet() ;
+// const Mercadopago = new VirtualWallet() ;
 
-console.log(`La wallet de toto tiene un balance de: ${Mercadopago.getBalanceByUsername("Toto")}`)
-console.log(`La wallet de toto tiene estas transacciones: ${JSON.stringify(Mercadopago.getTransactionsByUsername("Toto"))}`)
+// console.log(`La wallet de toto tiene un balance de: ${Mercadopago.getBalanceByUsername("Toto")}`)
+// console.log(`La wallet de toto tiene estas transacciones: ${JSON.stringify(Mercadopago.getTransactionsByUsername("Toto"))}`)
 
-function registrarUsuario() {
-    const nuevoUsuario = new User($("#nombre-usuario").val())
-    Mercadopago.signUpUser(nuevoUsuario)
-    localStorage.setItem('usuario', nuevoUsuario.username);
-    $("#usuario").html(nuevoUsuario.username);
-    console.log(Mercadopago)
+// function registrarUsuario() {
+//     const nuevoUsuario = new User($("#nombre-usuario").val())
+//     Mercadopago.signUpUser(nuevoUsuario)
+//     localStorage.setItem('usuario', nuevoUsuario.username);
+//     $("#usuario").html(nuevoUsuario.username);
+//     console.log(Mercadopago)
+// }
+
+// function generarTransaccion() {
+//     const cantidad = $("#cantidad").val();
+//     const cuentaDestino = $("#destino").val();
+//     const cuentaVendedor = $("#usuario").html();
+//     const transaction = new Transaction(cuentaVendedor, cuentaDestino, cantidad, 12312312);
+//     Mercadopago.pushNewTransaction(transaction);
+//     console.log(Mercadopago)
+// }
+
+
+// URL BASE:  https://api.mercadopago.com
+// ENDPOINT:  /checkout/preferences
+// URL COMPLETA: https://api.mercadopago.com/checkout/preferences
+
+// const datoDelUsuario = prompt("¿Que queres buscar?")
+// $.get(`https://api.mercadolibre.com/sites/MLA/search?q=${datoDelUsuario}`, function(valores, status){
+//     console.log(status);
+//     console.log(valores.results);
+//     //TODO HAcer otro get a una API de cotizacion de USD
+// })
+$.get("/datos.json", (resultado, status) => {
+    console.log(resultado);
+})
+
+
+
+const producto1 = {
+    name: 'Zapa niky',
+    price: 9000,
+    stock: 9999,
+    img: 'null',
+    offer: null
 }
 
-function generarTransaccion() {
-    const cantidad = $("#cantidad").val();
-    const cuentaDestino = $("#destino").val();
-    const cuentaVendedor = $("#usuario").html();
-    const transaction = new Transaction(cuentaVendedor, cuentaDestino, cantidad, 12312312);
-    Mercadopago.pushNewTransaction(transaction);
-    console.log(Mercadopago)
+const carrito = [producto1, producto1];
+const elementosMercadopago = carrito.map(producto => {
+    return {
+        "title": producto.name,
+        "description": "",
+        "picture_url": producto.img,
+        "category_id": "",
+        "quantity": 1,
+        "currency_id": "ARS",
+        "unit_price": producto.price
+    }
+})
+
+//Los datos a enviar
+const elemento = { "items": elementosMercadopago }
+
+
+// Los headers que no son el todos los casos
+$.ajaxSetup({
+    headers: {
+        'Authorization': ' Bearer TEST-2046297057992309-091701-a1f5b53560c90cf8dac07f80cfa3196e-242652951',
+        'Content-Type': 'application/json'
+    }
+});
+
+// El callback y la peticion
+$.post("https://api.mercadopago.com/checkout/preferences", JSON.stringify(elemento), (respuesta, status) => {
+    console.log(respuesta);
+});
+
+fetch("https://api.mercadopago.com/checkout/preferences", {
+    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    headers: {
+        'Authorization': ' Bearer TEST-2046297057992309-091701-a1f5b53560c90cf8dac07f80cfa3196e-242652951',
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(elemento)
+});
+
+
+
+
+
+
+
+async function GetDatos() {
+    // Funciones asincronicas
+    const response = await fetch('https://api.mercadolibre.com/sites/MLA/search?q=zapatillas');
+    const data = await response.json();
+    return data;
 }
+
+const baseDeDatos = GetDatos();
+console.log(baseDeDatos);
+
